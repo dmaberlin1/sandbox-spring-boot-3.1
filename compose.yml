@@ -1,6 +1,8 @@
 services:
   db_pg_15:
     image: postgres:15
+    labels:
+      org.springframework.boot.readiness-check.tcp.disable: true
     environment:
       POSTGRES_DB: sandbox
       POSTGRES_USER: sandbox_user
@@ -11,6 +13,9 @@ services:
       - 5432
   db_pg_14:
     image: postgres:14
+    labels:
+      org.springframework.boot.service-connection: postgres
+#  labels-    для собственных образов, созданных на основе postgres
     environment:
       POSTGRES_DB: sandbox
       POSTGRES_USER: sandbox_user
